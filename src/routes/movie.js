@@ -19,4 +19,15 @@ router.get("/:name", async (req, res) => {
   res.json(response);
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const response = await Movie.findByIdAndDelete(id);
+    res.status(200).send("Deleted successfully");
+  } catch (err) {
+    res.status(400).send("Unable to delete");
+  }
+});
+
 module.exports = router;
