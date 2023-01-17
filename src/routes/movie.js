@@ -13,4 +13,10 @@ router.post("/", (req, res) => {
   Movie.create({ name, imdb, director, genre, popularity });
 });
 
+router.get("/:name", async (req, res) => {
+  const movieName = req.params.name;
+  const response = await Movie.find({ name: movieName });
+  res.json(response);
+});
+
 module.exports = router;
